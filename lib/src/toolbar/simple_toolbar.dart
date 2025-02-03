@@ -67,6 +67,28 @@ class QuillSimpleToolbar extends StatelessWidget
 
       final groups = [
         [
+          if (config.showHeaderStyle) ...[
+            if (config.headerStyleType.isOriginal)
+              QuillToolbarSelectHeaderStyleDropdownButton(
+                controller: controller,
+                options: config.buttonOptions.selectHeaderStyleDropdownButton,
+                baseOptions: config.buttonOptions.base,
+              )
+            else
+              QuillToolbarSelectHeaderStyleButtons(
+                controller: controller,
+                options: config.buttonOptions.selectHeaderStyleButtons,
+                baseOptions: config.buttonOptions.base,
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Container(
+                height: 27,
+                width: 2,
+                color: Colors.black12,
+              ),
+            ),
+          ],
           if (configurations.showUndo)
             QuillToolbarHistoryButton(
               isUndo: true,
