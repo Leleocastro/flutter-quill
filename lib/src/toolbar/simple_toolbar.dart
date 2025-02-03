@@ -9,8 +9,7 @@ import 'buttons/arrow_indicated_list_button.dart';
 import 'config/toolbar_configurations.dart';
 import 'simple_toolbar_provider.dart';
 
-class QuillSimpleToolbar extends StatelessWidget
-    implements PreferredSizeWidget {
+class QuillSimpleToolbar extends StatelessWidget implements PreferredSizeWidget {
   factory QuillSimpleToolbar({
     required QuillSimpleToolbarConfigurations? configurations,
     QuillController? controller,
@@ -20,9 +19,7 @@ class QuillSimpleToolbar extends StatelessWidget
     controller ??= configurations?.controller;
     assert(controller != null,
         'controller required. Provide controller directly (preferred) or indirectly through configurations (not recommended - will be removed in future versions).');
-    controller ??= QuillController(
-        document: Document(),
-        selection: const TextSelection.collapsed(offset: 0));
+    controller ??= QuillController(document: Document(), selection: const TextSelection.collapsed(offset: 0));
     //
     controller.toolbarConfigurations = configurations;
     //
@@ -40,8 +37,7 @@ class QuillSimpleToolbar extends StatelessWidget
   final QuillController controller;
 
   /// The configurations for the toolbar widget of flutter quill
-  QuillSimpleToolbarConfigurations get configurations =>
-      controller.toolbarConfigurations;
+  QuillSimpleToolbarConfigurations get configurations => controller.toolbarConfigurations;
 
   double get _toolbarSize => configurations.toolbarSize * 1.4;
 
@@ -50,8 +46,7 @@ class QuillSimpleToolbar extends StatelessWidget
     final theEmbedButtons = configurations.embedButtons;
 
     List<Widget> childrenBuilder(BuildContext context) {
-      final toolbarConfigurations =
-          context.requireQuillSimpleToolbarConfigurations;
+      final toolbarConfigurations = context.requireQuillSimpleToolbarConfigurations;
 
       final globalIconSize = toolbarConfigurations.buttonOptions.base.iconSize;
 
@@ -71,14 +66,12 @@ class QuillSimpleToolbar extends StatelessWidget
             if (configurations.headerStyleType.isOriginal)
               QuillToolbarSelectHeaderStyleDropdownButton(
                 controller: controller,
-                options: toolbarConfigurations
-                    .buttonOptions.selectHeaderStyleDropdownButton,
+                options: toolbarConfigurations.buttonOptions.selectHeaderStyleDropdownButton,
               )
             else
               QuillToolbarSelectHeaderStyleButtons(
                 controller: controller,
-                options: toolbarConfigurations
-                    .buttonOptions.selectHeaderStyleButtons,
+                options: toolbarConfigurations.buttonOptions.selectHeaderStyleButtons,
               ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -178,19 +171,13 @@ class QuillSimpleToolbar extends StatelessWidget
             ),
           if (theEmbedButtons != null)
             for (final builder in theEmbedButtons)
-              builder(
-                  controller,
-                  globalIconSize ?? kDefaultIconSize,
-                  context.quillToolbarBaseButtonOptions?.iconTheme,
-                  configurations.dialogTheme),
+              builder(controller, globalIconSize ?? kDefaultIconSize, context.quillToolbarBaseButtonOptions?.iconTheme, configurations.dialogTheme),
         ],
         [
           if (configurations.showAlignmentButtons)
             QuillToolbarSelectAlignmentButtons(
               controller: controller,
-              options: toolbarConfigurations
-                  .buttonOptions.selectAlignmentButtons
-                  .copyWith(
+              options: toolbarConfigurations.buttonOptions.selectAlignmentButtons.copyWith(
                 showLeftAlignment: configurations.showLeftAlignment,
                 showCenterAlignment: configurations.showCenterAlignment,
                 showRightAlignment: configurations.showRightAlignment,
@@ -208,10 +195,8 @@ class QuillSimpleToolbar extends StatelessWidget
           if (configurations.showLineHeightButton)
             QuillToolbarSelectLineHeightStyleDropdownButton(
               controller: controller,
-              options: toolbarConfigurations
-                  .buttonOptions.selectLineHeightStyleDropdownButton,
+              options: toolbarConfigurations.buttonOptions.selectLineHeightStyleDropdownButton,
             ),
-          ],
         ],
         [
           if (configurations.showListNumbers)
@@ -345,15 +330,11 @@ class QuillSimpleToolbar extends StatelessWidget
             return Container(
               decoration: configurations.decoration ??
                   BoxDecoration(
-                    color:
-                        configurations.color ?? Theme.of(context).canvasColor,
+                    color: configurations.color ?? Theme.of(context).canvasColor,
                   ),
               constraints: BoxConstraints.tightFor(
-                height: configurations.axis == Axis.horizontal
-                    ? _toolbarSize
-                    : null,
-                width:
-                    configurations.axis == Axis.vertical ? _toolbarSize : null,
+                height: configurations.axis == Axis.horizontal ? _toolbarSize : null,
+                width: configurations.axis == Axis.vertical ? _toolbarSize : null,
               ),
               child: QuillToolbarArrowIndicatedButtonList(
                 axis: configurations.axis,
@@ -367,9 +348,7 @@ class QuillSimpleToolbar extends StatelessWidget
   }
 
   @override
-  Size get preferredSize => configurations.axis == Axis.horizontal
-      ? const Size.fromHeight(kDefaultToolbarSize)
-      : const Size.fromWidth(kDefaultToolbarSize);
+  Size get preferredSize => configurations.axis == Axis.horizontal ? const Size.fromHeight(kDefaultToolbarSize) : const Size.fromWidth(kDefaultToolbarSize);
 }
 
 /// The divider which is used for separation of buttons in the toolbar.
@@ -385,12 +364,10 @@ class QuillToolbarDivider extends StatelessWidget {
   });
 
   /// Provides a horizontal divider for vertical toolbar.
-  const QuillToolbarDivider.horizontal({Key? key, Color? color, double? space})
-      : this(Axis.horizontal, color: color, space: space, key: key);
+  const QuillToolbarDivider.horizontal({Key? key, Color? color, double? space}) : this(Axis.horizontal, color: color, space: space, key: key);
 
   /// Provides a horizontal divider for horizontal toolbar.
-  const QuillToolbarDivider.vertical({Key? key, Color? color, double? space})
-      : this(Axis.vertical, color: color, space: space, key: key);
+  const QuillToolbarDivider.vertical({Key? key, Color? color, double? space}) : this(Axis.vertical, color: color, space: space, key: key);
 
   /// The axis along which the toolbar is.
   final Axis axis;
