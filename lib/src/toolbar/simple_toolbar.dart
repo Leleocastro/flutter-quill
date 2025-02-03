@@ -71,14 +71,14 @@ class QuillSimpleToolbar extends StatelessWidget
             if (configurations.headerStyleType.isOriginal)
               QuillToolbarSelectHeaderStyleDropdownButton(
                 controller: controller,
-                options: configurations.buttonOptions.selectHeaderStyleDropdownButton,
-                baseOptions: configurations.buttonOptions.base,
+                options: toolbarConfigurations
+                    .buttonOptions.selectHeaderStyleDropdownButton,
               )
             else
               QuillToolbarSelectHeaderStyleButtons(
                 controller: controller,
-                options: configurations.buttonOptions.selectHeaderStyleButtons,
-                baseOptions: configurations.buttonOptions.base,
+                options: toolbarConfigurations
+                    .buttonOptions.selectHeaderStyleButtons,
               ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
